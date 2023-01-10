@@ -8,6 +8,7 @@ export default function Home() {
   const [movieName, setMovieName] = useState("");
   const [review, setReview] = useState("");
   const [moviList, setMovieList] = useState([]);
+  const [newUpdate, setNewUpdate] = useState('')
 
   useEffect(() => {
     Axios.get("http://localhost:3001/api/get").then((response) => {
@@ -35,6 +36,15 @@ export default function Home() {
         console.error(error);
       });
   };
+
+  const updateReview = (id) => {
+    console.log(id);
+    Axios.put('http://localhost:3001/api/update/', {
+      movieName: id,
+      movieReview: newUpdate,
+    });
+    setNewUpdate("");
+  }
 
   return (
     <div className={`${styles.container} ${styles.main}`}>
@@ -71,8 +81,12 @@ export default function Home() {
               >
                 Delete
               </button>
-              <input type="text" />
-              <button>Update</button>
+              <input type="text" onChange={(e) => {
+                setNewUpdate(e.target.value)
+              }}/>
+              <button onClick={() => {
+                updateReview(item.id)
+              }}>Update</button>
             </div>
           );
         })}

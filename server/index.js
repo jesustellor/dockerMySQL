@@ -45,6 +45,17 @@ app.delete('/api/delete/:id', (req, res) => {
       }
     });
   });
+
+  app.put('/api/update', (req, res) => {
+    const id = req.body.movieName;
+    const review = req.body.movieReview;
+    const sqlUpdate = "UPDATE reviews.movie_data SET movie_data = ? WHERE (id = ?);"
+
+    db.query(sqlUpdate, [review, id], (err, result) => {
+      console.log(`${id} and ${review}`);
+
+    })
+  })
   
 app.listen(PORT, () =>{
         console.log("Server is Successfully Running, and App is listening on port "+ PORT);
