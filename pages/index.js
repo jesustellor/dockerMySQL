@@ -11,14 +11,14 @@ export default function Home() {
   const [newUpdate, setNewUpdate] = useState('')
 
   useEffect(() => {
-    Axios.get("http://localhost:3001/api/get").then((response) => {
+    Axios.get("http://localhost:3306/api/get").then((response) => {
       console.log(response.data);
       setMovieList(response.data);
     });
   }, []);
 
   const submitReview = () => {
-    Axios.post("http://localhost:3001/api/insert", {
+    Axios.post("http://localhost:3306/api/insert", {
       movieName: movieName,
       movieReview: review,
     });
@@ -27,7 +27,7 @@ export default function Home() {
   };
 
   const deleteReview = (id) => {
-    Axios.delete(`http://localhost:3001/api/delete/${id}`)
+    Axios.delete(`http://localhost:3306/api/delete/${id}`)
       .then((response) => {
         console.log(response.data);
         // Update the list of movies here
@@ -39,7 +39,7 @@ export default function Home() {
 
   const updateReview = (id) => {
     console.log(id);
-    Axios.put('http://localhost:3001/api/update/', {
+    Axios.put('http://localhost:3306/api/update/', {
       movieName: id,
       movieReview: newUpdate,
     });
