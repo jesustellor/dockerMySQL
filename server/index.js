@@ -3,17 +3,17 @@ const mysql = require('mysql2');
 const cors = require('cors');
   
 const app = express();
-const PORT = 3001;
+const PORT = 3306;
 
 // app.use(express.urlencoded({extended: true})); 
 app.use(express.json());
 app.use(cors());
 
 const db = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: 'godpower',
-    database: 'reviews',
+    host: 'databases.000webhost.com/index.php',
+    user: 'id19564409_phlegathetic',
+    password: '!$k09}^&6g!-E\\Q',
+    database: 'id19564409_reviews',
 });
 // sending data to the front end.
 app.get('/api/get', (req, res) => {
